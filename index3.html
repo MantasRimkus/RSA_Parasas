@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>RSA Skaitmeninis Parašas</title>
+
+<script src="https://cdn.jsdelivr.net/npm/jsencrypt/bin/jsencrypt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 40px;
+}
+
+textarea {
+    width: 600px;
+    height: 70px;
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 10px;
+    font-size: 16px;
+}
+
+#result {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>RSA Skaitmeninis Parašas</h1>
+
+<button onclick="generateKeys()">Generuoti raktus</button>
+
+<br>
+
+<textarea id="message" placeholder="Įvesk pranešimą"></textarea>
+
+<br>
+
+<button onclick="signMessage()">Pasirašyti</button>
+
+<br>
+
+<textarea id="signature" placeholder="Parašas"></textarea>
+
+<br>
+
+<button onclick="verifySignature()">Tikrinti</button>
+
+<div id="result"></div>
+
+<script>
+let privateKey = "";
+let publicKey = "";
+
+function generateKeys() {
+    const rsa = new JSEncrypt({ default_key_size: 1024 });
+    rsa.getKey();
+
+    privateKey = rsa.getPrivateKey();
+    publicKey = rsa.getPublicKey();
+
+    alert("Raktai sugeneruoti");
+}
+
+function signMessage() {
+    const message = document.getElementById("message").value;
+
+    if (!privateKey) {
+        alert("Pirma sugeneruok raktus");
+        return;
+    }
+
+    if (message.trim() === "") {
+        alert("Įvesk pranešimą");
+        return;
+    }
+
+    const signer = new JSEncrypt();
+    signer.setPrivateKey(privateKey);
+
+    const signature = signer.sign(message, CryptoJS.SHA256, "sha256");
+
+    document.getElementById("signature").value = signature;
+    document.getElementById("result").innerText = "";
+}
+
+function verifySignature() {
+    const message = document.getElementById("message").value;
+    const signature = document.getElementById("signature").value;
+
+    if (!publicKey) {
+        alert("Pirma sugeneruok raktus");
+        return;
+    }
+
+    if (message.trim() === "" || signature.trim() === "") {
+        alert("Trūksta pranešimo arba parašo");
+        return;
+    }
+
+    const verifier = new JSEncrypt();
+    verifier.setPublicKey(publicKey);
+
+    const isValid = verifier.verify(message, signature, CryptoJS.SHA256);
+
+    const result = document.getElementById("result");
+
+    if (isValid) {
+        result.innerText = "Parašas galiojantis";
+        result.style.color = "green";
+    } else {
+        result.innerText = "Parašas negaliojantis";
+        result.style.color = "red";
+    }
+}
+</script>
+
+</body>
+</html>
