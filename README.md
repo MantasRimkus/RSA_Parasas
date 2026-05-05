@@ -51,14 +51,3 @@ Programa sukurta naudojant JavaScript ir veikia naršyklėje be serverio.
 5. Jei sutampa – parašas galiojantis, jei ne – negaliojantis
 
 ---
-
-## Pastabos
-
-- Bet koks pranešimo arba parašo pakeitimas padaro parašą negaliojantį
-- Sistema demonstruoja skaitmeninio parašo veikimo principą
-
----
-
-## Autorius
-
-Mantas Rimkus
