@@ -1,16 +1,64 @@
-RSA Skaitmeninio Parašo Sistema
+# RSA Skaitmeninio Parašo Sistema
 
-Aprašymas
-Ši programa yra žiniatinklio sistema, leidžianti vartotojui generuoti RSA raktus, pasirašyti tekstą skaitmeniniu parašu ir patikrinti parašo galiojimą. Programa veikia naršyklėje naudojant JavaScript.
+## Aprašymas
+Ši programa yra žiniatinklio sistema, leidžianti vartotojui generuoti RSA raktus, pasirašyti tekstą skaitmeniniu parašu ir patikrinti parašo galiojimą.
 
-Funkcionalumas
-Sistema leidžia sugeneruoti RSA viešąjį ir privatųjį raktus, įvesti tekstą, sugeneruoti skaitmeninį parašą, rankiniu būdu pakeisti parašą ir patikrinti, ar parašas yra galiojantis ar negaliojantis.
+Programa sukurta naudojant JavaScript ir veikia naršyklėje be serverio.
 
-Kaip paleisti
-Atsisiųskite projektą arba atsidarykite GitHub repozitoriją. Atidarykite index.html failą naršyklėje. Paspauskite „Generuoti raktus“, įveskite tekstą, paspauskite „Pasirašyti“, o tada „Tikrinti“.
+---
 
-Naudotos technologijos
-HTML, CSS, JavaScript, JSEncrypt biblioteka (RSA), CryptoJS (SHA-256).
+## Funkcionalumas
 
-Veikimo principas
-Vartotojas įveda pranešimą, kuris yra maišomas naudojant SHA-256. Gautas maišos rezultatas pasirašomas naudojant RSA privatųjį raktą. Tikrinimo metu parašas tikrinamas naudojant viešąjį raktą ir nustatoma, ar jis atitinka pranešimą. Jei parašas ir pranešimas sutampa, parašas laikomas galiojančiu, priešingu atveju – negaliojančiu.
+- Generuoti RSA viešąjį ir privatųjį raktus
+- Įvesti tekstą
+- Sugeneruoti skaitmeninį parašą
+- Rankiniu būdu pakeisti parašą
+- Patikrinti parašo galiojimą
+- Parodyti rezultatą (galiojantis / negaliojantis)
+
+---
+
+## Kaip paleisti
+
+1. Atsisiųskite projektą arba atsidarykite GitHub nuorodą
+2. Atidarykite `index.html` failą naršyklėje
+3. Naudokite sistemą:
+   - Paspauskite "Generuoti raktus"
+   - Įveskite tekstą
+   - Paspauskite "Pasirašyti"
+   - Paspauskite "Tikrinti"
+
+---
+
+## Naudotos technologijos
+
+- HTML
+- CSS
+- JavaScript
+- JSEncrypt biblioteka (RSA)
+- CryptoJS (SHA-256 maišos funkcija)
+
+---
+
+## Veikimo principas
+
+1. Vartotojas įveda pranešimą
+2. Pranešimas yra maišomas naudojant SHA-256
+3. Maišos reikšmė pasirašoma naudojant RSA privatųjį raktą
+4. Tikrinimo metu:
+   - Parašas tikrinamas naudojant viešąjį raktą
+   - Lyginama, ar parašas atitinka pranešimą
+5. Jei sutampa – parašas galiojantis, jei ne – negaliojantis
+
+---
+
+## Pastabos
+
+- Bet koks pranešimo arba parašo pakeitimas padaro parašą negaliojantį
+- Sistema demonstruoja skaitmeninio parašo veikimo principą
+
+---
+
+## Autorius
+
+Mantas Rimkus
